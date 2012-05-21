@@ -1,0 +1,23 @@
+<%= form_for(@play, :remote => true, :html => { :'data-type' => 'html', :id => 'create_play_form' }) do |f| %>
+<div id='error_explanation' class='invisible'></div>
+
+<div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :placeholder => 'The Fumblerooski' %>
+</div>
+<div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => 3, :placeholder => 'Our secret weapon.' %>
+</div>
+<div class="field">
+    <%= f.label :num_players, 'Number of players' %><br />
+    <%= f.select :num_players, [['11', 11], ['8', 8]] %>
+</div>
+<div class="field">
+    <%= f.label :play_type %><br />
+    <%= f.select :play_type, [['Offensive', 'Offensive'], ['Defensive', 'Defensive'], ['Special', 'Special']] %>
+</div>
+<div class="actions">
+    <%= f.submit %>
+</div>
+<% end %>

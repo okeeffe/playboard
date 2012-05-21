@@ -1,0 +1,33 @@
+<% title "PlayBoard || " + @play.name %>
+<section id="intro">
+  <header>
+    <h1><%= @play.name %></h1>
+  </header>
+  <p>
+    <b>Description:</b>
+    <%= @play.description %>
+  </p>
+
+  <p>
+    <b>No. of Players:</b>
+    <%= @play.num_players %>
+  </p>
+
+  <p>
+    <b>Play Type:</b>
+    <%= @play.play_type %>
+  </p>
+  <p>
+    <%= link_to 'Edit', edit_play_path(@play) %> |
+    <%= link_to 'Back', plays_path %>
+  </p>
+</section>
+
+
+<canvas id="chalkboard" width="800" height="600" tabindex='1'>
+  <p>Your browser does not support the canvas element. For best results, please use the latest versions of Google Chrome, Firefox, Safari, or Internet Explorer.</p>
+</canvas>
+<div id="bottomButtons">
+  <%= image_tag( 'playButton.png', :id => 'playButton') %>
+</div>
+

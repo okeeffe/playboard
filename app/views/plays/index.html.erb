@@ -1,0 +1,36 @@
+<% title "PlayBoard || Your Plays" %>
+<h1>Your Plays</h1>
+
+<div id='list'>
+        <% @plays.each do |play| %>
+        <section id="listItem">
+          <header>
+            <h1><%= link_to play.name, play %></h1>
+            <p>
+              <%= link_to 'Edit', edit_play_path(play) %> |
+              <%= link_to 'Destroy', play, :confirm => 'Are you sure?', :method => :delete %>
+            </p>
+          </header>
+          <p>
+            <b>Description:</b>
+            <%= play.description %>
+          </p>
+
+          <p>
+            <b>No. of Players:</b>
+            <%= play.num_players %>
+          </p>
+
+          <p>
+            <b>Play Type:</b>
+            <%= play.play_type %>
+          </p>
+        </section>
+        <% end %>
+    </table>
+
+    <br />
+
+    <%= link_to 'New Play', new_play_path %>
+
+</div>

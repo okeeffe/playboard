@@ -1,0 +1,49 @@
+<div id="coach_form">
+
+<%= form_for(@user, :html => {:autocomplete => "off"}) do |f| %>
+<% if @user.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="field">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, :placeholder => 'Vince' %>
+</div>
+<div class="field">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, :placeholder => 'Lombardi' %>
+</div>
+<div class="field">
+    <%= f.label :team %>
+    <%= f.text_field :team, :placeholder => 'Green Bay Packers' %>
+</div>
+<div class="field">
+    <%= f.label :username %>
+    <%= f.text_field :username, :placeholder => 'vlombardi' %>
+</div>
+<div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, :placeholder => 'vlombardi@alltimegreats.com' %>
+</div>	
+<div class="field">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, :size => 40, :placeholder => 'gr33nB4yRULe$' %>
+</div>
+<div class="field">
+    <%= f.label :password_confirmation, 'Confirm password' %><br />
+    <%= f.password_field :password_confirmation, :size => 40, :placeholder => 'gr33nB4yRULe$' %>
+</div>
+<div class="actions">
+    <%= f.submit %>
+</div>
+<% end %>
+
+</div>

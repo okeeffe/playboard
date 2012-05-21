@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  num_players: 1
+  play_type: MyString
+  json: MyText
+
+two:
+  name: MyString
+  description: MyText
+  num_players: 1
+  play_type: MyString
+  json: MyText

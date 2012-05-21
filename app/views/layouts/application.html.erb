@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield(:title) || "PlayBoard" %></title>
+  <%= favicon_link_tag %>
+  
+  <%= stylesheet_link_tag :all, :cache => true %>
+  <%= javascript_include_tag 'mootools.js', :cache => true %>
+  <%= javascript_include_tag 'rails.js', :cache => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <%= render :partial => 'shared/header' %>
+  <%= render_flash_messages %>
+  <% if @user = User.find_by_id(session[:user_id]) %>
+    <%= render :partial => 'shared/loggedInLinks' %>
+  <% else %>
+    <%= render :partial => 'shared/links' %>
+  <% end %>
+  <div id="container">
+    
+    <%= yield %>
+    
+  </div>
+  <%= render :partial => 'shared/footer' %>
+</body>
+</html>
