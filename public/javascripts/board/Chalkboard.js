@@ -35,7 +35,7 @@ var Chalkboard = new Class
 			this.context.lineJoin = 'miter';
 			this.context.strokeStyle = '#eee';
 			this.chalk = bgImage;
-			this.context.font = 'bold 15px sans-serif'
+			this.context.font = 'bold 15px sans-serif';
 			this.context.textAlign = 'center';
 			
 			this.WIDTH = this.canvas.width;
@@ -71,7 +71,7 @@ var Chalkboard = new Class
 				this.canvas.addEvent('contextmenu', this.onRightClick.bind(this));
 				
 				//And set it up to save automatically every two minutes.
-				setInterval(function() {$('play_submit').click()}, 120000);
+				setInterval(function() { $('play_submit').click(); }, 120000);
 			}
 			else
 			{
@@ -173,7 +173,7 @@ var Chalkboard = new Class
 	onKeyDown : function(evt)
 	{
 		//If backspace is pressed, the canvas has focus and edit mode is on, call delete on a play.
-		if(evt.key == 'backspace' && document.activeElement == this.canvas && this.editMode == true)
+		if(evt.key === 'backspace' && document.activeElement === this.canvas && this.editMode === true)
 		{
 			evt.stop();
 			this.play.delete();
@@ -181,7 +181,7 @@ var Chalkboard = new Class
 			this.changed = true;
 		}
 		//If spacebar is pressed and the canvas has focus, call animate.
-		if(evt.key == 'space' && document.activeElement == this.canvas)
+		if(evt.key === 'space' && document.activeElement === this.canvas)
 		{
 			evt.stop();
 			
@@ -189,13 +189,13 @@ var Chalkboard = new Class
 		}
 		//If ctrl and s are pressed and edit mode is on, trigger the click event on the play submit button,
 		//which sends the form contents via AJAX, and if successful, sends the play JSON immediately after.
-		if(evt.control && evt.code == '83' && this.editMode == true)
+		if(evt.control && evt.code === '83' && this.editMode === true)
 		{
 			evt.stop();
 			$('play_submit').click();
 		}
 		//If escape is pressed, the canvas has focus and edit mode is on, deselect the currently selected player.
-		if(evt.key == 'esc' && document.activeElement == this.canvas && this.editMode == true)
+		if(evt.key === 'esc' && document.activeElement === this.canvas && this.editMode === true)
 		{
 			evt.stop();
 			this.play.setSelectedPlayer(null);
