@@ -134,7 +134,8 @@ var Player = new Class
 	populateInfoBox : function()
 	{
 		//Grab the details div for manipulation.
-		var details = $('details');
+		var details = $('details'),
+			option1, option2, option3, option4, option5;
 		
 		//Make sure it exists first.
 		if(details)
@@ -142,13 +143,13 @@ var Player = new Class
 			//Blocking Selection Code. Sets up the options in the correct order depending on the blocking variable.
 			if(this.getBlocking())
 			{
-				var option1 = new Element('option', {value : 'blocking', text : 'Blocking'});
-				var option2 = new Element('option', {value : 'running', text : 'Passing/Rushing'});
+				option1 = new Element('option', {value : 'blocking', text : 'Blocking'});
+				option2 = new Element('option', {value : 'running', text : 'Passing/Rushing'});
 			}
 			else
 			{
-				var option1 = new Element('option', {value : 'running', text : 'Passing/Rushing'});
-				var option2 = new Element('option', {value : 'blocking', text : 'Blocking'});
+				option1 = new Element('option', {value : 'running', text : 'Passing/Rushing'});
+				option2 = new Element('option', {value : 'blocking', text : 'Blocking'});
 			}
 
 			//Create a select box with those options.
@@ -172,21 +173,21 @@ var Player = new Class
 			//Speed Selection Code. Again, establishes the correct options in relation to the player's speed variable.
 			if(this.getSpeed() == 10)
 			{
-				var option3 = new Element('option', {value : 'medium', text : 'Medium'});
-				var option4 = new Element('option', {value : 'slow', text : 'Slow'});
-				var option5 = new Element('option', {value : 'fast', text : 'Fast'});
+				option3 = new Element('option', {value : 'medium', text : 'Medium'});
+				option4 = new Element('option', {value : 'slow', text : 'Slow'});
+				option5 = new Element('option', {value : 'fast', text : 'Fast'});
 			}
 			else if(this.getSpeed() == 7)
 			{
-				var option3 = new Element('option', {value : 'slow', text : 'Slow'});
-				var option4 = new Element('option', {value : 'medium', text : 'Medium'});
-				var option5 = new Element('option', {value : 'fast', text : 'Fast'});
+				option3 = new Element('option', {value : 'slow', text : 'Slow'});
+				option4 = new Element('option', {value : 'medium', text : 'Medium'});
+				option5 = new Element('option', {value : 'fast', text : 'Fast'});
 			}
 			else if(this.getSpeed() == 13)
 			{
-				var option3 = new Element('option', {value : 'fast', text : 'Fast'});
-				var option4 = new Element('option', {value : 'slow', text : 'Slow'});
-				var option5 = new Element('option', {value : 'medium', text : 'Medium'});
+				option3 = new Element('option', {value : 'fast', text : 'Fast'});
+				option4 = new Element('option', {value : 'slow', text : 'Slow'});
+				option5 = new Element('option', {value : 'medium', text : 'Medium'});
 			}
 
 			//Again, sets up a select box with the correct options.
@@ -274,7 +275,7 @@ var Player = new Class
 		{
 			context.fillStyle = '#eee';
 			context.fill();
-			if(this.getInitials() != '')
+			if(this.getInitials() !== '')
 			{
 				context.fillStyle = '#444';
 				context.fillText(this.getInitials(), x, y+5);
@@ -284,7 +285,7 @@ var Player = new Class
 		{
 			context.fillStyle = '#444';
 			context.fill();
-			if(this.getInitials != '')
+			if(this.getInitials !== '')
 			{
 				context.fillStyle = '#eee';
 				context.fillText(this.getInitials(), x, y+5);
@@ -397,18 +398,19 @@ var Player = new Class
 		//Start from the current frame (needed for animation).
 		for(var n = this.frameNum; n < this.keyframes.length - 1; n++)
 		{	
+			var start, end;
 			//If the player is on this frame.
 			if(n == this.frameNum)
 			{
 				//Draw the line from the player's position, not the start of the keyframe.
-				var start = this.getPosition();
-				var end = this.keyframes[n+1].getPoint();
+				start = this.getPosition();
+				end = this.keyframes[n+1].getPoint();
 			}
 			//Otherwise, draw the line between the two keyframes.
 			else
 			{
-				var start = this.keyframes[n].getPoint();
-				var end = this.keyframes[n+1].getPoint();
+				start = this.keyframes[n].getPoint();
+				end = this.keyframes[n+1].getPoint();
 			}
 			
 			this.line(start.getX(), start.getY(), end.getX(), end.getY(), context);
@@ -499,7 +501,7 @@ var Player = new Class
 			playerKeyframesJSON[i] = this.keyframes[i].save();
 		}
 		var playerCollectedFramesJSON = {};
-		playerCollectedFramesJSON['keyframes'] = playerKeyframesJSON;
+		playerCollectedFramesJSON.keyframes = playerKeyframesJSON;
 		
 		//Then packages the player's attributes and returns the bundle to the play.
 		var playerBlockingJSON = {blocking : this.blocking};

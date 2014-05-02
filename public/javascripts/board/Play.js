@@ -79,7 +79,7 @@ var Play = new Class
 	//Function to handle clicks on the Play. Adds a new player when the limit has not been reached.
 	clicked : function(point, adding)
 	{
-		if(this.selectedPlayer == null && adding)
+		if(this.selectedPlayer === null && adding)
 		{
 			if(this.players.length < this.getNumPlayers())
 			{
@@ -97,7 +97,7 @@ var Play = new Class
 	{
 		//First, check whether the click has landed on a player.
 		this.selectedPlayer = this.checkHit(point);
-		if(this.selectedPlayer != null)
+		if(this.selectedPlayer !== null)
 		{
 			//If it has, show that player's details and start the dragging.
 			this.selectedPlayer.populateInfoBox();
@@ -120,7 +120,7 @@ var Play = new Class
 	//Function that handles what happens when a drag is finished.
 	mouseUp : function(point)
 	{
-		if(this.selectedPlayer != null && this.dragging)
+		if(this.selectedPlayer !== null && this.dragging)
 		{
 			//Check the player has not been dragged out of bounds. If it has, boundsCheck handles it.
 			this.selectedPlayer = this.boundsCheck(this.selectedPlayer);
@@ -132,7 +132,7 @@ var Play = new Class
 	//Function to handle assigning of keyframe waypoints to player.
 	order : function(point)
 	{
-		if(this.selectedPlayer != null)
+		if(this.selectedPlayer !== null)
 		{
 			//Get the last order given to ensure it's not the same (i.e. a double right click in the exact same point). (bugfix).
 			var lastPoint = this.selectedPlayer.getLatestKeyframe().getPoint();
@@ -150,7 +150,7 @@ var Play = new Class
 	//Function to handle deletion of first a player's keyframes/waypoints (if any) and then the player itself.
 	delete : function()
 	{
-		if(this.selectedPlayer != null)
+		if(this.selectedPlayer !== null)
 		{
 			//If the player has keyframes, delete the most recently added one.
 			if(this.selectedPlayer.keyframes.length > 1)
@@ -226,7 +226,7 @@ var Play = new Class
 		for(var i = 0; i < this.players.length - 1; i++)
 		{
 			//If a player is null, move down the one above it and continue.
-			if(this.players[i] == null)
+			if(this.players[i] === null)
 			{
 				this.players[i] = this.players[i+1];
 				this.players[i+1] = null;
@@ -355,12 +355,12 @@ var Play = new Class
 			playersJSON[i] = this.players[i].save();
 		}
 		var playersCollectedJSON = {};
-		playersCollectedJSON['players'] = playersJSON;
+		playersCollectedJSON.players = playersJSON;
 		
 		var playTypeJSON = {play_type : this.getType()};
 		var playNumPlayersJSON = {num_players : this.getNumPlayers()};
 		
-		playJSON['play_json'] = Object.merge(playTypeJSON, playNumPlayersJSON, playersCollectedJSON);
+		playJSON.play_json = Object.merge(playTypeJSON, playNumPlayersJSON, playersCollectedJSON);
 		return JSON.encode(playJSON);
 	}
 });
